@@ -15,12 +15,12 @@ Feature: Create, read, update and delete roles
     Given I am on the Roles page
     When I click on a role
     And I click the Edit button
-    And I input a different role name
+    And I input a different <Role> name
     And I click the Save Role button
     Then the role will be updated with the new name
 
     Examples:
-    | Roles |
+    | Role |
     | Leader |
     | Consultant |
 
