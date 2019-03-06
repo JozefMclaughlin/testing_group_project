@@ -5,3 +5,4 @@ Click delete button: click_button("Delete")
 Click edit button: click_button("Edit")
 Send input to new role name field: find(:name, "role_name").send_keys
 Click on save role button: click_button("Save role")
+Click log out button: click_button("Log out")

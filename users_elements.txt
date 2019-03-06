@@ -10,3 +10,4 @@ Password field: find(:name, "password").send_keys
 Cohort drop down: find(:select [0], "cohort_id")
 Role drop down: find(:select [0], "role_id")
 Click save user button: click_button("Save User").send_keys
+Click log out button: click_button("Log out")

@@ -5,3 +5,4 @@ Click delete button: click_button("Delete")
 Click edit button: click_button("Edit")
 Send input to new specialisation name field: find(:id, "input-fn").send_keys
 Click on save button: click_button("Save")
+Click log out button: click_button("Log out")
