@@ -2,6 +2,8 @@ require_relative '../lib/pages/cohorts'
 require_relative '../lib/pages/roles'
 require_relative '../lib/pages/specialization'
 require_relative '../lib/pages/users'
+require_relative '../lib/pages/login'
+
 
 
 module ManagmentSystem
