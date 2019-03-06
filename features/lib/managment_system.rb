@@ -19,4 +19,7 @@ module ManagmentSystem
     Users.new
   end
 
+  def login
+    LogIn.new
+  end
 end
