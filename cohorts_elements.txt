@@ -1,0 +1,28 @@
+  --View Cohorts
+
+Add New Button
+click_button("Add New")
+
+First Cohort in table
+click_link("Engineering-22")
+
+
+  --Cohort Details
+
+Edit Button
+click_button("Edit")
+
+Delete Button
+click_button("Delete")
+
+
+  --Edit Cohort
+
+Edit Cohort Name
+fill_in(placeholder="Enter cohort")
+
+Select specialisation
+find(:select [0], "specialisation_id")
+
+Save Cohort
+click_button("Save Cohort")

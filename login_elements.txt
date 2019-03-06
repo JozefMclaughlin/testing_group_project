@@ -1,0 +1,8 @@
+Email Form
+fill_in(placeholder="Please enter your email")
+
+Password Form
+fill_in(placeholder="Please enter your password")
+
+Login Button
+click_button("Submit")
