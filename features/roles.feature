@@ -33,11 +33,11 @@ Feature: Create, read, update and delete roles
   Scenario Outline: Adding an existing role will remove it from the page
     Given I am on the Roles page
     When I click the Add New button
-    And I enter a name for the new role
+    And I enter a name for the new <Role>
     And click the Save role button
     Then there is a new role on the Roles page with the same value I entered
 
     Examples:
-    | Roles |
+    | Role |
     | Leader |
     | Consultant |
