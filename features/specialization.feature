@@ -20,10 +20,10 @@ Feature: I am able to interact with the Specializations
     Then I arrive at the individual <Specialization> show page
 
     Examples:
-    | Specialization |
-    |        1       |
-    |        2       |
-    |        3       |
+    |     Specialization      |
+    |        SDET             |
+    |        DevOps           |
+    |        Management       |
 
   Scenario: I am able to create a new Specialization
     Given I am on the homepage
@@ -48,10 +48,10 @@ Feature: I am able to interact with the Specializations
     Then I should be on the Specialization page with the edited Specialization updated
 
     Examples:
-    | Specialization |
-    |        1       |
-    |        2       |
-    |        3       |
+    |     Specialization      |
+    |        SDET             |
+    |        DevOps           |
+    |        Management       |
 
   Scenario Outline: I am able to delete an individual Specialization
     Given I am on the homepage
@@ -63,7 +63,7 @@ Feature: I am able to interact with the Specializations
     Then I should be on the Specialization page with the deleted Specialization removed
 
     Examples:
-    | Specialization |
-    |        1       |
-    |        2       |
-    |        3       |
+    |     Specialization      |
+    |        SDET             |
+    |        DevOps           |
+    |        Management       |
