@@ -1,3 +1,6 @@
+  --Navigate to Cohorts
+click_link("Cohorts")
+
   --View Cohorts
 
 Add New Button
