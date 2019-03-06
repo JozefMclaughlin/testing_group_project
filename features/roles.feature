@@ -11,7 +11,7 @@ Feature: Create, read, update and delete roles
     When I click on a role
     Then I am directed to the page for that role
 
-  Scenario: Editing an existing role will update the role successfully
+  Scenario Outline: Editing an existing role will update the role successfully
     Given I am on the Roles page
     When I click on a role
     And I click the Edit button
@@ -19,15 +19,25 @@ Feature: Create, read, update and delete roles
     And I click the Save Role button
     Then the role will be updated with the new name
 
+    Examples:
+    | Roles |
+    | Leader |
+    | Consultant |
+
   Scenario: Deleting an existing role will remove it from the page
     Given I am on the Roles page
     When I click on a role
     And I click the Delete button
     Then the role is no longer visible on the Roles page
 
-  Scenario: Deleting an existing role will remove it from the page
+  Scenario Outline: Adding an existing role will remove it from the page
     Given I am on the Roles page
     When I click the Add New button
     And I enter a name for the new role
     And click the Save role button
     Then there is a new role on the Roles page with the same value I entered
+
+    Examples:
+    | Roles |
+    | Leader |
+    | Consultant |
