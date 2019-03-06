@@ -1,0 +1,7 @@
+Specialisation link in navbar: find(:css, 'a', text: "Specialisation").click OR click_link("Specialisation")
+Click add new button: click_button("Add New")
+Click individual specialisation: click_link("specialisation_name")
+Click delete button: click_button("Delete")
+Click edit button: click_button("Edit")
+Send input to new specialisation name field: find(:id, "input-fn").send_keys
+Click on save button: click_button("Save")

@@ -1,0 +1,12 @@
+Users link in navbar: find(:css, 'a', text: "Users").click OR click_link("Users")
+Click add new button: click_button("Add New")
+Click individual user: click_link("user_name")
+Click delete button: click_button("Delete")
+Click edit button: click_button("Edit")
+First name field: find(:name, "first_name").send_keys
+Last name field: find(:name, "last_name").send_keys
+Email field: find(:name, "email").send_keys
+Password field: find(:name, "password").send_keys
+Cohort drop down: find(:select [0], "cohort_id")
+Role drop down: find(:select [0], "role_id")
+Click save user button: click_button("Save User").send_keys

@@ -1,0 +1,7 @@
+Roles link in navbar: find(:css, 'a', text: "Roles").click OR click_link("Roles")
+Click add new button: click_button("Add New")
+Click individual role: find(:css, 'a', text: "Trainee").click OR click_link("role name")
+Click delete button: click_button("Delete")
+Click edit button: click_button("Edit")
+Send input to new role name field: find(:name, "role_name").send_keys
+Click on save role button: click_button("Save role")
