@@ -29,27 +29,28 @@ Feature: I am able login
   | specialisations/1 |
   | roles/1           |
   |                   |
-
-  Scenario Outline: There is a nav bar on every page
-  Given I am logged in
-  And I am on the <page2> page of the app
-  And the nav bar is visible
-  When I click an index on the nav bar
-  Then I am directed to that index page
-
-  Examples:
-  | page2           |
-  | users           |
-  | cohorts         |
-  | specialisations |
-
+  @test4
   Scenario Outline: Users cannot access the app if they are not logged in
   Given I load the homepage
   When I try to access the <page3> page
-  Then I cannot get past the login page
+  Then I cannot get past the login page <pageName>
 
   Examples:
-  | page3           |
-  | users           |
-  | cohorts         |
-  | specialisations |
+  | page3           | pageName        |
+  | Users           | users           |
+  | Cohorts         | cohorts         |
+  | Specialisations | specialisations |
+  | Roles           | roles           |
+  @test5
+  Scenario Outline: Users can use the navbar when logged in
+  Given: I load the homepage
+  And I am logged in
+  When I try to access the <page4> page
+  Then I am redirected to the relevant page <page4>
+
+  Examples:
+  | page4           |
+  | Users           |
+  | Cohorts         |
+  | Specialisations |
+  | Roles |
