@@ -38,24 +38,17 @@ Given(/^I am on the (.*) page of the app$/) do |page|
 end
 
 Given("I can see the logout button") do
-  pending # Write code here that turns the phrase above into concrete actions
+  # login.find_logout_button
+  expect(login.find_logout_button).to be true
 end
 
 When("I click logout") do
-  pending # Write code here that turns the phrase above into concrete actions
+  login.click_logout_button
+  sleep 1
 end
 
 Then("I am logged out") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("I am on the cohorts page of the app") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-
-Given("I am on the specialisations page of the app") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(current_url).to eq "http://localhost:9292/"
 end
 
 Given("the nav bar is visible") do
@@ -67,10 +60,6 @@ When("I click an index on the nav bar") do
 end
 
 Then("I am directed to that index page") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given("I am logged out") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 

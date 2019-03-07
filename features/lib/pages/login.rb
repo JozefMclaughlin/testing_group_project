@@ -11,6 +11,11 @@ class LogIn
     find_button("Submit").visible?
   end
 
+  def find_logout_button
+    # find(:css, "form='log-out'").visible?
+    find_button(:text => "Log Out").visible?
+  end
+
   def enter_email
     fill_in(:name => "email", :with => 'admin@spartaglobal.com')
   end
@@ -20,7 +25,11 @@ class LogIn
   end
 
   def click_submit_button
-    click_button("Submit")
+    click_button('Submit')
+  end
+
+  def click_logout_button
+    find_button(:text => "Log Out").click
   end
 
   def login
