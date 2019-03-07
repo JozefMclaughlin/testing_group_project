@@ -9,69 +9,99 @@ Feature: View Cohorts
     Then I should be taken to the Cohorts page
     And I should be able to see a list of all cohorts
 
-Feature: View Cohort Details
-  As a User
-  I want to be able to access an individual page for each cohort
-  So that I can see that cohort’s information
+# Feature: View Cohort Details
+#   As a User
+#   I want to be able to access an individual page for each cohort
+#   So that I can see that cohort’s information
 
   Scenario: I want to see more details of a specific cohort
     Given I am logged in
-    Given I am on the Cohorts page
-    When I click on a cohort
+    When I click the Cohorts tab
+    And I click on a cohort
     Then I should be taken to that cohort's details page
 
-Feature: Create a New Cohort
-  As a User
-  I want to be able to create a new cohort
-  So that I can add new cohorts to the system
-  ACCEPTANCE CRITERIA:
-  -A cohort must have a:
-               -Name
-               -Specialisation
+# Feature: Create a New Cohort
+#   As a User
+#   I want to be able to create a new cohort
+#   So that I can add new cohorts to the system
+#   ACCEPTANCE CRITERIA:
+#   -A cohort must have a:
+#                -Name
+#                -Specialisation
 
-  Scenario: I want to create a new cohort
+  Scenario: I want to create a new cohort that has both a name and specialization
     Given I am logged in
-    Given I am on the Cohorts page
-    When I click Add New
+    When I click the Cohorts tab
+    And I click Add New
     And I enter a name for my cohort
-    And I select a specialisation for my cohort
+    And I select a specialization for my cohort
     And I click Save Cohort
     Then My new cohort should be added to the cohorts list
 
-Feature: Editing Existing Cohorts
-  As a User
-  I want to be able to edit an existing cohort
-  So that I can update their information when necessary
-
-  Scenario: I want to edit the name of an existing cohort
+  Scenario: I cannot create a new cohort that has neither a name or specialization
     Given I am logged in
-    Given There are cohorts available to edit
-    When I click an existing cohort
+    When I click the Cohorts tab
+    And I click Add New
+    And I select a specialization for my cohort
+    And I click Save Cohort
+    Then the error will display showing a lack of cohort name
+
+# Feature: Editing Existing Cohorts
+#   As a User
+#   I want to be able to edit an existing cohort
+#   So that I can update their information when necessary
+
+  Scenario: I want to edit the name of an existing cohort or specialisation
+    Given I am logged in
+    When I click the Cohorts tab
+    And There are cohorts available to edit
+    And I click on a cohort
     And I click Edit on that cohort's page
     And I change the current name to the desired name
+    And I change the current specialization to the desired specialization
     And I click Save Cohort
     Then The cohort's new name should be saved
 
-  Scenario: I want to edit the specialisation of an existing cohort
+  Scenario Outline: I don't want to edit the name of an existing cohort or specialisation if I leave the name or specialization blank
     Given I am logged in
-    Given There are cohorts available to edit
-    When I click an existing cohort
+    When I click the Cohorts tab
+    And There are cohorts available to edit
+    And I click on a cohort
     And I click Edit on that cohort's page
-    And I select a new specialisation
+    And I change the current name to the desired <name>
+    And I change the current specialization to the desired <specialization>
     And I click Save Cohort
-    Then The cohort's specialisation should be changed
+    Then an error code must be displayed and the cohort shouldn't save
 
-Feature: Deleting Existing Cohorts
-  As a User
-  I want to be able to delete an existing cohort
-  So that I can remove cohorts from the system when necessary
-  ACCEPTANCE CRITERIA:
-  -Cohorts that currently have users attached to them must not be able to be deleted.
+    Examples:
+    | name           | specialization |
+    |                | DevOps         |
+    | Engineering-22 |                |
+
+
+# Feature: Deleting Existing Cohorts
+#   As a User
+#   I want to be able to delete an existing cohort
+#   So that I can remove cohorts from the system when necessary
+#   ACCEPTANCE CRITERIA:
+#   -Cohorts that currently have users attached to them must not be able to be deleted.
 
   Scenario: I want to delete an existing cohort
     Given I am logged in
-    Given There is a nonzero amount of existing cohorts
-    Given The cohort I want to delete is not already in use
-    When I click an existing cohort
+    When I click the Cohorts tab
+    And I click Add New
+    And I enter a name for my cohort
+    And I select a specialisation for my cohort
+    And I click Save Cohort
+    And I click on the created cohort
     And I click Delete on that cohort's page
     Then The cohort should be deleted
+
+  Scenario: I shouldn't be able to delete a cohort with attached users
+    Given I am logged in
+    And I am on the users page
+    When I take one of the user's cohort
+    And I click the Cohorts tab
+    And I click the specified cohort
+    And I click Delete on that cohort's page
+    Then that cohort should not delete

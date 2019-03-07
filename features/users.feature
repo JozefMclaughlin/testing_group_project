@@ -1,8 +1,9 @@
 Feature: I am able to create, read, edit or delete user information
 
   Scenario: I am able to create a new user
-    Given I am on the users page
-    When I click onto "Add New"
+    Given I am logged in
+    And I am on the users page
+    When I click onto Add New
     And the new user page loads
     And I enter the user's first name
     And I enter the user's last name
@@ -10,11 +11,11 @@ Feature: I am able to create, read, edit or delete user information
     And I enter the user's password
     And I select the user's cohort
     And I select the user's role
-    Then the new user is added to the database
-    And the new user is displayed on the users page
+    Then the new user is displayed on the users page
 
   Scenario: I am able to edit a user
-    Given I am on the users page
+    Given I am logged in
+    And I am on the users page
     When I click on the user
     And I click the edit button
     And I enter the user's first name
@@ -23,29 +24,34 @@ Feature: I am able to create, read, edit or delete user information
     And I enter the user's passsword
     And I select the user's cohort
     And I select the user's role
-    And I click "Save User"
-    Then the database should be updated with the user's new information
-    And the user's details should be updated
+    And I click Save User
+    Then the user's details should be updated
 
+    Scenario: I am able to delete a user
+    Given I am logged in
+    And I am on the users page
+    When I click on a user
+    And I click on Delete
+    Then the user's page should be deleted
 
   Scenario: I am able to read data about a user
-    Given I am on the users page
+    Given I am logged in
+    And I am on the users page
     When I click on a user
     Then their individual information is displayed on the page
 
-  Scenario: I am able to delete a user
-    Given I am on the users page
-    When I click on a user
-    And I click on "Delete"
-    Then the user should be deleted from the database
-    And I should be redirected to the users page
-    And I shouldn't be able to see that user anymore
+  Scenario: I am able to see a list of users
+    Given I am logged in
+    When I click on the user tab
+    Then a list of all the users is displayed on the page
 
-Feature: I receive an error message when I miscorrectly input information
+
+# Feature: I receive an error message when I miscorrectly input information
 
   Scenario Outline: I am not able to create a user if I am missing any details
-    Given I am on the users page
-    When I click onto "Add New"
+    Given I am logged in
+    And I am on the users page
+    When I click onto Add New
     And I enter the user's <first_name>
     And I enter the user's <last_name>
     And I enter the user's <email_address>
@@ -64,20 +70,22 @@ Feature: I receive an error message when I miscorrectly input information
   | Steve | Jobless | steve@spartaglobal.com | Password1 | Engineering-22 |  | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
 
 
-  Scenario: I am not able to enter an email address not of the form "@spartaglobal"
-    Given I am on the users page
-    When I click onto "Add New"
+  Scenario: I am not able to enter an email address not of the form /@spartaglobal
+    Given I am logged in
+    And I am on the users page
+    When I click onto Add New
     And I enter the user's first name
     And I enter the user's last name
-    And I enter a user's email address not of the form "@spartaglobal"
+    And I enter a user's email address not of the form /@spartaglobal
     And I enter the user's password
     And I select the user's cohort
     And I select the user's role
     Then I receive an error message
 
   Scenario Outline: I am not able to create a user if the user's password is missing any criteria
-    Given I am on the users page
-    When I click onto "Add New"
+    Given I am logged in
+    And I am on the users page
+    When I click onto Add New
     And I enter the user's <first_name2>
     And I enter the user's <last_name2>
     And I enter the user's <email_address2>
@@ -93,8 +101,9 @@ Feature: I receive an error message when I miscorrectly input information
   | Steve | Jobless | steve@spartaglobal.com | PASSWORD1 | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
 
   Scenario Outline: I am not able to create a user if the user's cohort or role isn't on the system
-    Given I am on the users page
-    When I click onto "Add New"
+    Given I am logged in
+    And I am on the users page
+    When I click onto Add New
     And I enter the user's <first_name3>
     And I enter the user's <last_name3>
     And I enter the user's <email_address3>
