@@ -2,8 +2,14 @@ Feature: I am able login
 
   Scenario: I am met with a login page
   Given I load the homepage
-  When I am on the homepage
   Then the login page is displayed
+
+  Scenario: I am able to login
+  Given I load the homepage
+  When I enter correct username
+  And I enter correct password
+  And I click login
+  Then the user is logged in
 
   Scenario Outline: I am able to logout on every page
   Given I am logged in

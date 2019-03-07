@@ -1,8 +1,8 @@
 Email Form
-fill_in(placeholder="Please enter your email")
+fill_in(placeholder="Please enter your Email")
 
 Password Form
-fill_in(placeholder="Please enter your password")
+fill_in(placeholder="Please enter your Password")
 
 Login Button
 click_button("Submit")
