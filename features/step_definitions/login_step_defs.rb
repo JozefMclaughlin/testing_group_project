@@ -1,9 +1,9 @@
 Given("I load the homepage") do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit('http://localhost:9292/')
 end
 
 When("I am on the homepage") do
-  pending # Write code here that turns the phrase above into concrete actions
+  
 end
 
 Then("the login page is displayed") do
