@@ -50,13 +50,3 @@ Feature: I am able to interact with the Specializations
     And I click a Specialization
     And I click the delete link
     Then I should be on the Specialization page with the deleted Specialization removed
- 
-  # Scenario: I am able to delete an individual Specialization
-  #   Given I am logged in
-  #   When I click the Specialization link
-  #   And I click the add new Specialization link
-  #   And I enter a new Specialization
-  #   And click the save click
-  #   And I click a Specialization
-  #   And I click the delete link
-  #   Then I should be on the Specialization page with the deleted Specialization removed

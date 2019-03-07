@@ -9,25 +9,11 @@ Feature: View Cohorts
     Then I should be taken to the Cohorts page
     And I should be able to see a list of all cohorts
 
-# Feature: View Cohort Details
-#   As a User
-#   I want to be able to access an individual page for each cohort
-#   So that I can see that cohort’s information
-
   Scenario: I want to see more details of a specific cohort
     Given I am logged in
     When I click the Cohorts tab
     And I click on a cohort
     Then I should be taken to that cohort's details page
-
-# Feature: Create a New Cohort
-#   As a User
-#   I want to be able to create a new cohort
-#   So that I can add new cohorts to the system
-#   ACCEPTANCE CRITERIA:
-#   -A cohort must have a:
-#                -Name
-#                -Specialisation
 
   Scenario: I want to create a new cohort that has both a name and specialization
     Given I am logged in
@@ -45,11 +31,6 @@ Feature: View Cohorts
     And I select a specialization for my cohort
     And I click Save Cohort
     Then the error will display showing a lack of cohort name
-
-# Feature: Editing Existing Cohorts
-#   As a User
-#   I want to be able to edit an existing cohort
-#   So that I can update their information when necessary
 
   Scenario: I want to edit the name of an existing cohort or specialisation
     Given I am logged in
@@ -78,13 +59,6 @@ Feature: View Cohorts
     |                | DevOps         |
     | Engineering-22 |                |
 
-
-# Feature: Deleting Existing Cohorts
-#   As a User
-#   I want to be able to delete an existing cohort
-#   So that I can remove cohorts from the system when necessary
-#   ACCEPTANCE CRITERIA:
-#   -Cohorts that currently have users attached to them must not be able to be deleted.
 
   Scenario: I want to delete an existing cohort
     Given I am logged in
