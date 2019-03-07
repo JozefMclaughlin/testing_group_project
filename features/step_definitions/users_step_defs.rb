@@ -1,6 +1,5 @@
 Given("I am on the users page") do
-
-  pending # Write code here that turns the phrase above into concrete actions
+expect(find_elements_by_tag_name('h1')[0].inner).to eq "Users"
 end
 
 When("I click onto Add New") do

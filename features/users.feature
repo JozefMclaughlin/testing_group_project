@@ -1,5 +1,6 @@
 Feature: I am able to create, read, edit or delete user information
 
+  @createuser
   Scenario: I am able to create a new user
     Given I am logged in
     And I am on the users page
@@ -13,6 +14,7 @@ Feature: I am able to create, read, edit or delete user information
     And I select the user's role
     Then the new user is displayed on the users page
 
+  @edituser
   Scenario: I am able to edit a user
     Given I am logged in
     And I am on the users page
@@ -27,24 +29,28 @@ Feature: I am able to create, read, edit or delete user information
     And I click Save User
     Then the user's details should be updated
 
-    Scenario: I am able to delete a user
+  @deleteuser
+  Scenario: I am able to delete a user
     Given I am logged in
     And I am on the users page
     When I click on a user
     And I click on Delete
     Then the user's page should be deleted
 
+  @readuser
   Scenario: I am able to read data about a user
     Given I am logged in
     And I am on the users page
     When I click on a user
     Then their individual information is displayed on the page
 
+  @listuser
   Scenario: I am able to see a list of users
     Given I am logged in
     When I click on the user tab
     Then a list of all the users is displayed on the page
 
+  @missingdetailsuser
   Scenario Outline: I am not able to create a user if I am missing any details
     Given I am logged in
     And I am on the users page
@@ -66,7 +72,7 @@ Feature: I am able to create, read, edit or delete user information
   | Steve | Jobless | steve@spartaglobal.com | Password1 |  | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
   | Steve | Jobless | steve@spartaglobal.com | Password1 | Engineering-22 |  | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
 
-
+  @emailnotformuser
   Scenario: I am not able to enter an email address not of the form /@spartaglobal
     Given I am logged in
     And I am on the users page
@@ -79,6 +85,7 @@ Feature: I am able to create, read, edit or delete user information
     And I select the user's role
     Then I receive an error message
 
+  @passwordmissinguser
   Scenario Outline: I am not able to create a user if the user's password is missing any criteria
     Given I am logged in
     And I am on the users page
@@ -97,6 +104,7 @@ Feature: I am able to create, read, edit or delete user information
   | Steve | Jobless | steve@spartaglobal.com | password1 | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
   | Steve | Jobless | steve@spartaglobal.com | PASSWORD1 | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
 
+  @cohortorroleuser
   Scenario Outline: I am not able to create a user if the user's cohort or role isn't on the system
     Given I am logged in
     And I am on the users page
