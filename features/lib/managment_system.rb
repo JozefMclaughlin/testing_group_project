@@ -24,4 +24,8 @@ module ManagmentSystem
   def login
     LogIn.new
   end
+
+  def visit_page page
+    visit("http://localhost:9292/#{page}")
+  end
 end

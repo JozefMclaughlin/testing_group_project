@@ -8,31 +8,33 @@ Then("the login page is displayed") do
 end
 
 When("I enter correct username") do
-  fill_in(:name => "email", :with => 'admin@spartaglobal.com')
-  sleep 3
+  login.enter_email
+  sleep 1
 end
 
 When("I enter correct password") do
-  fill_in('password', :with => 'Password1')
-  sleep 3
+  login.enter_password
+  sleep 1
 end
 
 When("I click login") do
   click_button("Submit")
-  sleep 3
+  sleep 1
 end
 
 Then("the user is logged in") do
   expect(current_url).to eq "http://localhost:9292/users"
-  sleep 3
+  sleep 1
 end
 
 Given("I am logged in") do
-  pending
+  login.visit_homepage
+  login.login
 end
 
-Given("I am on the users page of the app") do
-  pending # Write code here that turns the phrase above into concrete actions
+Given(/^I am on the (.*) page of the app$/) do |page|
+  visit_page page
+  sleep 2
 end
 
 Given("I can see the logout button") do
