@@ -11,14 +11,14 @@ Feature: I am able to interact with the Specializations
   Scenario: I am able to access a list all Specializations
     Given I am logged in
     When I click the Specialization link
-    Then the page displaying a list of all Specializations is open
+    Then the page displaying the initial list of all Specializations is open
 
   @spec2
   Scenario: I am able to access an individual Specialization
     Given I am logged in
     When I click the Specialization link
-    And the page displaying a list of all Specializations is open
-    And I click a specialization
+    And the page displaying the initial list of all Specializations is open
+    And I click existing specialization
     Then I arrive at the individual specialization show page
 
   @spec3
@@ -53,6 +53,18 @@ Feature: I am able to interact with the Specializations
   Scenario: I am able to delete an existing Specialization
     Given I am logged in
     When I click the Specialization link
-    And I click a specialization
+    And I click existing specialization
+    And I click the delete link
+    Then I should be on the Specialization page with the deleted Specialization removed
+
+  @spec7
+  Scenario: I am able to delete an existing Specialization
+    Given I am logged in
+    When I click the Specialization link
+    And the page displaying a list of all Specializations is open
+    # And I click the add new Specialization link
+    # And I enter a new Specialization
+    # And click the save click
+    And I click the new specialization
     And I click the delete link
     Then I should be on the Specialization page with the deleted Specialization removed
