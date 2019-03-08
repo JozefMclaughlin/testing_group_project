@@ -35,7 +35,8 @@ module ManagmentSystem
 
   def check_headers header
     # find("h1", header).visible?
-    find(:css, "h1", text: "#{header}").visible?
+    # find(:css, "h1", text: "#{header}").visible?
+    find(:xpath, '//h1').text
     # find(:css, ".incorrect-input").visible?
   end
 

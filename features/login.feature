@@ -45,7 +45,7 @@ Feature: I am able login
   Scenario Outline: Users can use the navbar when logged in
   Given: I load the homepage
   And I am logged in
-  When I try to access the <page4> page
+  When I try to access the <page4> page when logged in
   Then I am redirected to the relevant page <page4>
 
   Examples:
@@ -53,4 +53,4 @@ Feature: I am able login
   | Users           |
   | Cohorts         |
   | Specialisations |
-  | Roles |
+  | Roles           |

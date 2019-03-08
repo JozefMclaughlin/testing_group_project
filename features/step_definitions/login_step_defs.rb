@@ -61,6 +61,11 @@ Then(/^I cannot get past the login page (.*)$/) do |pageName|
   expect(login.check_error_message).to be true
 end
 
+When(/^I try to access the (.*) page when logged in$/) do |link|
+  click_nav_link link
+end
+
 Then(/^I am redirected to the relevant page (.*)$/) do |header|
-  expect(check_headers "#{header}").to be true
+  check_headers header
+  expect(check_headers "#{header}").to eq header
 end
