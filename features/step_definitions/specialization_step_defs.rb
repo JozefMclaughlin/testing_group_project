@@ -17,17 +17,22 @@ Then("the page displaying a list of all Specializations is open") do
 end
 
 
-When("I click a specialization") do
-  specialization.click_specialization 'test3'
+When(/^I click the (.*) specialization$/) do |spec|
+  specialization.click_specialization spec
+  sleep 3
 end
 
-When("I click existing specialization") do
-  specialization.click_specialization 'SDET'
-end
-
-When("I click the new specialization") do
-  specialization.click_specialization 'SDET1'
-end
+# When("I click a specialization") do
+#   specialization.click_specialization 'test3'
+# end
+#
+# When("I click existing specialization") do
+#   specialization.click_specialization 'SDET'
+# end
+#
+# When("I click the new specialization") do
+#   specialization.click_specialization 'SDET1'
+# end
 
 Then("I arrive at the individual specialization show page") do
   expect(current_url).to eq 'http://localhost:9292/specialisations/1'
