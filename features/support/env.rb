@@ -1,6 +1,5 @@
 require 'capybara/cucumber'
 require 'rspec'
-require 'selenium'
 require_relative '../lib/managment_system'
 
 Capybara.register_driver :chrome do |app|

@@ -1,21 +1,23 @@
 Given("I am on the users page") do
-expect(find_elements_by_tag_name('h1')[0].inner).to eq "Users"
+  users.click_users
+  expect(users.find_h1_text).to eq "Users"
 end
 
 When("I click onto Add New") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.click_add_new
 end
 
 When("the new user page loads") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(users.find_h1_text).to eq 'Make A New User'
 end
 
 When("I enter the user's first name") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.fill_in_first_name "Steve"
 end
 
 When("I enter the user's last name") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.fill_in_last_name "Jobless"
+  sleep 3
 end
 
 When("I enter the user's email address") do
