@@ -7,18 +7,21 @@ Feature: I am able to interact with the Specializations
   I want to delete a Specialization
   So that I can monitor the Specializations
 
+  @spec1
   Scenario: I am able to access a list all Specializations
     Given I am logged in
     When I click the Specialization link
-    Then the page displaying a list of all Specializations is open
+    Then the page displaying the initial list of all Specializations is open
 
+  @spec2
   Scenario: I am able to access an individual Specialization
     Given I am logged in
     When I click the Specialization link
-    And the page displaying a list of all Specializations is open
-    And I click a specialization
+    And the page displaying the initial list of all Specializations is open
+    And I click existing specialization
     Then I arrive at the individual specialization show page
 
+  @spec3
   Scenario: I am able to create a new Specialization
     Given I am logged in
     When I click the Specialization link
@@ -27,6 +30,7 @@ Feature: I am able to interact with the Specializations
     And click the save click
     Then I should be on the Specialization page with the new Specialization added
 
+  @spec4
   Scenario: I am not able to create a new Specialization without a name
     Given I am logged in
     When I click the Specialization link
@@ -35,18 +39,32 @@ Feature: I am able to interact with the Specializations
     And click the save click
     Then I should receive an error about the specialization having no name
 
+  @spec5
   Scenario: I am able to edit an individual Specialization
     Given I am logged in
     When I click the Specialization link
-    And I click an specialization
+    And I click a specialization
     And I click the edit link
     And I edit the Specialization
     And click the save click
     Then I should be on the Specialization page with the edited Specialization updated
 
+  @spec6
   Scenario: I am able to delete an existing Specialization
     Given I am logged in
     When I click the Specialization link
-    And I click a Specialization
+    And I click existing specialization
+    And I click the delete link
+    Then I should be on the Specialization page with the deleted Specialization removed
+
+  @spec7
+  Scenario: I am able to delete an existing Specialization
+    Given I am logged in
+    When I click the Specialization link
+    And the page displaying a list of all Specializations is open
+    # And I click the add new Specialization link
+    # And I enter a new Specialization
+    # And click the save click
+    And I click the new specialization
     And I click the delete link
     Then I should be on the Specialization page with the deleted Specialization removed
