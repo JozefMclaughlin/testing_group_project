@@ -5,16 +5,17 @@ class Roles
     visit('http://localhost:9292/roles')
   end
 
+
   def find_trainee
-    find("a[href='/roles/2']").text
+    find_link("Trainee").text
   end
 
   def find_trainer
-    find("a[href='/roles/1']").text
+    find_link("Trainer").text
   end
 
   def find_admin
-    find("a[href='/roles/3']").text
+    find_link("Admin").text
   end
 
   def click_role
@@ -34,7 +35,7 @@ class Roles
   end
 
   def check_new
-    find("a[href='/roles/4']").text
+    find_link("test_role").text
   end
 
   def check_new_error
@@ -47,12 +48,20 @@ class Roles
     fill_in('role_name', with: 'test_edit')
   end
   def click_test_role
-    find("a[href='/roles/4']").click
+    click_link("test_role")
+  end
+
+  def check_edit
+    find_link("test_edit").text
+  end
+
+  def click_edit_role
+    click_link('test_edit')
   end
   def click_delete
     click_button('Delete')
   end
   def check_delete
-    find("a[href='/roles/4']").visable?
+    all(:css, 'td').length
   end
 end

@@ -31,7 +31,7 @@ Feature: Create, read, update and delete roles
   Scenario: Editing an existing role
     Given I am logged in
     And navigate to the roles page
-    And I click on a role
+    And I click on an existing role
     And I click the Edit role button
     And I input a different Role name
     And click the Save role button

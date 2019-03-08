@@ -20,6 +20,10 @@ end
 
 
 When("I click on a role") do
+  roles.click_edit_role
+end
+
+When ("I click on an existing role") do
   roles.click_test_role
 end
 
@@ -58,7 +62,7 @@ end
 
 Then("the role will be updated with the new name") do
   roles.visit_roles
-  expect(roles.check_new).to eq 'test_edit'
+  expect(roles.check_edit).to eq 'test_edit'
 end
 
 
@@ -67,5 +71,8 @@ When("I click the Delete button") do
 end
 
 Then("the role is no longer visible on the Roles page") do
-  expect(roles.check_delete).to be false
+  expect(roles.find_trainee).to eq 'Trainee'
+  expect(roles.find_trainer).to eq 'Trainer'
+  expect(roles.find_admin).to eq 'Admin'
+  expect(roles.check_delete).to eq 3
 end
