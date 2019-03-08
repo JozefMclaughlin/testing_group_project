@@ -19,7 +19,6 @@ end
 
 When(/^I click the (.*) specialization$/) do |spec|
   specialization.click_specialization spec
-  sleep 3
 end
 
 # When("I click a specialization") do
