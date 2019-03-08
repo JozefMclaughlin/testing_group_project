@@ -51,30 +51,21 @@ Then("I am logged out") do
   expect(current_url).to eq "http://localhost:9292/"
 end
 
-Given("the nav bar is visible") do
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I try to access the (.*) page$/) do |link|
+  login.click_logout_button
+  click_nav_link link
 end
 
-When("I click an index on the nav bar") do
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I cannot get past the login page (.*)$/) do |pageName|
+  expect(current_url).to eq "http://localhost:9292/#{pageName}"
+  expect(login.check_error_message).to be true
 end
 
-Then("I am directed to that index page") do
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I try to access the (.*) page when logged in$/) do |link|
+  click_nav_link link
 end
 
-When("I try to access the users page") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("I cannot get past the login page") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I try to access the cohorts page") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I try to access the specialisations page") do
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^I am redirected to the relevant page (.*)$/) do |header|
+  check_headers header
+  expect(check_headers "#{header}").to eq header
 end

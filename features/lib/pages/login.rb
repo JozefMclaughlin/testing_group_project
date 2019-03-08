@@ -38,4 +38,8 @@ class LogIn
     click_submit_button
   end
 
+  def check_error_message
+    find(:css, ".incorrect-input").visible?
+  end
+
 end
