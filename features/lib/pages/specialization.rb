@@ -37,7 +37,7 @@ class Specialization
     click_button('Save')
   end
 
-  def check_new_specialization_added value
+  def check_specialization value
     find_link(value).visible?
   end
 
@@ -45,4 +45,11 @@ class Specialization
     find(:css, 'p').text
   end
 
+  def click_delete
+    click_button('Delete')
+  end
+
+  def length_of_table
+    all(:css, 'td').length
+  end
 end
