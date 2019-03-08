@@ -1,9 +1,9 @@
 When("I click the Cohorts tab") do
-  pending # Write code here that turns the phrase above into concrete actions
+  cohorts.click_cohorts_link
 end
 
 Then("I should be taken to the Cohorts page") do
-  pending # Write code here that turns the phrase above into concrete actions
+
 end
 
 Then("I should be able to see a list of all cohorts") do
