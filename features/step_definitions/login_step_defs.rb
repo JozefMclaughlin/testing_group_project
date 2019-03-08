@@ -9,22 +9,18 @@ end
 
 When("I enter correct username") do
   login.enter_email
-  sleep 1
 end
 
 When("I enter correct password") do
   login.enter_password
-  sleep 1
 end
 
 When("I click login") do
   click_button("Submit")
-  sleep 1
 end
 
 Then("the user is logged in") do
   expect(current_url).to eq "http://localhost:9292/users"
-  sleep 1
 end
 
 Given("I am logged in") do
@@ -34,7 +30,6 @@ end
 
 Given(/^I am on the (.*) page of the app$/) do |page|
   visit_page page
-  sleep 2
 end
 
 Given("I can see the logout button") do
@@ -44,7 +39,6 @@ end
 
 When("I click logout") do
   login.click_logout_button
-  sleep 1
 end
 
 Then("I am logged out") do
