@@ -28,4 +28,13 @@ module ManagmentSystem
   def visit_page page
     visit("http://localhost:9292/#{page}")
   end
+
+  def click_nav_link link
+    click_link("#{link}")
+  end
+
+  def check_headers header
+    find(:xpath, '//h1').text
+  end
+
 end
