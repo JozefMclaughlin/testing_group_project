@@ -12,141 +12,127 @@ When("the new user page loads") do
 end
 
 When("I enter the user's first name") do
-  users.fill_in_first_name "Steve"
+  users.fill_in_first_name users.new_first_name
 end
 
 When("I enter the user's last name") do
-  users.fill_in_last_name "Jobless"
-  sleep 3
+  users.fill_in_last_name users.new_last_name
 end
 
 When("I enter the user's email address") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.fill_in_email users.new_email
 end
 
 When("I enter the user's password") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.fill_in_password users.new_password
 end
 
 When("I select the user's cohort") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.select_cohort rand(0..2)
 end
 
 When("I select the user's role") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-Then("the new user is displayed on the users page") do
-  pending # Write code here that turns the phrase above into concrete actions
-
-end
-
-When("I click on the user") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I click the edit button") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I enter the user's passsword") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.select_role rand(0..3)
 end
 
 When("I click Save User") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.click_save_user
+end
+
+Then("the new user is displayed on the users page") do
+  puts users.find_user
+  expect(users.find_last_user.text).to include users.new_full_name
+  expect(users.find_last_user.text).to include users.new_email
+end
+
+Then("so I delete the user") do
+  users.click_users
+  users.click_user users.new_full_name, users.new_email
+  users.click_delete
+  expect(users.find_user_row(users.new_email)).to eq nil
+end
+
+Then("so I delete the edited user") do
+  users.click_users
+  users.click_user users.edit_full_name, users.edit_email
+  users.click_delete
+  expect(users.find_user_row(users.new_email)).to eq nil
+end
+
+When("I click on the user") do
+  users.click_user users.new_full_name, users.new_email
+end
+
+When("I click the edit button") do
+  users.click_edit_user
+end
+
+When("I change the user's first name") do
+  users.fill_in_first_name users.edit_first_name
+end
+
+When("I change the user's last name") do
+  users.fill_in_last_name users.edit_last_name
+end
+
+When("I change the user's email address") do
+  users.fill_in_email users.edit_email
+end
+
+When("I change the user's password") do
+  users.fill_in_password users.edit_password
 end
 
 Then("the user's details should be updated") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I click on a user") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.click_users
+  expect(users.find_user_row(users.edit_email).text).to include users.edit_full_name
+  expect(users.find_user_row(users.edit_email).text).to include users.edit_email
 end
 
 When("I click on Delete") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.click_delete
 end
 
 Then("the user's page should be deleted") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(users.find_user_row(users.edit_email)).to eq nil
 end
+
 Then("their individual information is displayed on the page") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-
-When("I click on the user tab") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(users.find_individual_email).to eq users.new_email
 end
 
 Then("a list of all the users is displayed on the page") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(users.find_all_users).to_not eq nil
 end
 
-When("I enter the user's ") do
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I enter the user's first name (.*)$/ ) do |firstname|
+  users.fill_in_first_name firstname
 end
 
-When("I enter the user's Jobless") do
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I enter the user's last name (.*)$/ ) do |lastname|
+  users.fill_in_last_name lastname
 end
 
-When("I enter the user's steve@spartaglobal.com") do
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I enter the user's email address (.*)$/ ) do |email|
+  users.fill_in_email email
 end
 
-When("I enter the user's Password{int}") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
+When(/^I enter the user's password (.*)$/ ) do |password|
+  users.fill_in_password password
 end
 
-When("I select the user's Engineering{int}") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I select the user's Trainee") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-Then("I receive an {string} message") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-
-When("I enter the user's Steve") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I select the user's ") do
-  pending # Write code here that turns the phrase above into concrete actions
+When("I click on any user") do
+  users.click_any_user
 end
 
 When("I enter a user's email address not of the form \/@spartaglobal") do
-  pending # Write code here that turns the phrase above into concrete actions
+  users.fill_in_email users.incorrect_email
 end
 
-Then("I receive an error message") do
-  pending # Write code here that turns the phrase above into concrete actions
+Then("I receive a create user error message") do
+  expect(users.error_message_text).to eq users.create_error_message
 end
 
-When("I enter the user's Password") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I enter the user's password{int}") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I enter the user's PASSWORD{int}") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I select the user's Woof") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-Then("I receive an ?? message") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I select the user's Bark") do
-  pending # Write code here that turns the phrase above into concrete actions
+Then("I receive a edit user error message") do
+  expect(users.error_message_text).to eq users.edit_error_message
 end
