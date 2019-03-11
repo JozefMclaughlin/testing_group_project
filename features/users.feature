@@ -1,5 +1,6 @@
 Feature: I am able to create, read, edit or delete user information
 
+  @createuser
   Scenario: I am able to create a new user
     Given I am logged in
     And I am on the users page
@@ -11,63 +12,116 @@ Feature: I am able to create, read, edit or delete user information
     And I enter the user's password
     And I select the user's cohort
     And I select the user's role
+    And I click Save User
     Then the new user is displayed on the users page
+    And so I delete the user
 
+  @edituser
   Scenario: I am able to edit a user
     Given I am logged in
     And I am on the users page
-    When I click on the user
-    And I click the edit button
+    When I click onto Add New
+    And the new user page loads
     And I enter the user's first name
     And I enter the user's last name
     And I enter the user's email address
-    And I enter the user's passsword
+    And I enter the user's password
+    And I select the user's cohort
+    And I select the user's role
+    And I click Save User
+    And I click on the user
+    And I click the edit button
+    And I change the user's first name
+    And I change the user's last name
+    And I change the user's email address
+    And I change the user's password
     And I select the user's cohort
     And I select the user's role
     And I click Save User
     Then the user's details should be updated
+    And so I delete the edited user
 
-    Scenario: I am able to delete a user
+  @deleteuser
+  Scenario: I am able to delete a user
     Given I am logged in
     And I am on the users page
-    When I click on a user
+    When I click onto Add New
+    And the new user page loads
+    And I enter the user's first name
+    And I enter the user's last name
+    And I enter the user's email address
+    And I enter the user's password
+    And I select the user's cohort
+    And I select the user's role
+    And I click Save User
+    And I click on the user
     And I click on Delete
     Then the user's page should be deleted
 
+  @readuser
   Scenario: I am able to read data about a user
     Given I am logged in
     And I am on the users page
-    When I click on a user
+    When I click onto Add New
+    And the new user page loads
+    And I enter the user's first name
+    And I enter the user's last name
+    And I enter the user's email address
+    And I enter the user's password
+    And I select the user's cohort
+    And I select the user's role
+    And I click Save User
+    When I click on the user
     Then their individual information is displayed on the page
+    And so I delete the user
 
+  @listuser
   Scenario: I am able to see a list of users
     Given I am logged in
-    When I click on the user tab
+    And I am on the users page
     Then a list of all the users is displayed on the page
 
+  @missingdetailscreateuser
   Scenario Outline: I am not able to create a user if I am missing any details
     Given I am logged in
     And I am on the users page
     When I click onto Add New
-    And I enter the user's <first_name>
-    And I enter the user's <last_name>
-    And I enter the user's <email_address>
-    And I enter the user's <password>
-    And I select the user's <cohort>
-    And I select the user's <role>
-    Then I receive an <error> message
+    And I enter the user's first name <first_name>
+    And I enter the user's last name <last_name>
+    And I enter the user's email address <email_address>
+    And I enter the user's password <password>
+    And I click Save User
+    Then I receive a create user error message
 
   Examples:
-  | first_name | last_name | email_address | password | cohort | role | error |
-  |  | Jobless | steve@spartaglobal.com | Password1 | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
-  | Steve |  | steve@spartaglobal.com | Password1 | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
-  | Steve | Jobless |  | Password1 | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
-  | Steve | Jobless | steve@spartaglobal.com |  | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
-  | Steve | Jobless | steve@spartaglobal.com | Password1 |  | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
-  | Steve | Jobless | steve@spartaglobal.com | Password1 | Engineering-22 |  | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
+  | first_name | last_name | email_address          | password  |
+  |            | Jobless   | steve@spartaglobal.com | Password1 |
+  | Steve      |           | steve@spartaglobal.com | Password1 |
+  | Steve      | Jobless   |                        | Password1 |
+  | Steve      | Jobless   | steve@spartaglobal.com |           |
 
+  @missingdetailsedituser
+  Scenario Outline: I am not able to create a user if I am missing any details
+    Given I am logged in
+    And I am on the users page
+    When I click on any user
+    And I click the edit button
+    And I enter the user's first name <first_name>
+    And I enter the user's last name <last_name>
+    And I enter the user's email address <email_address>
+    And I enter the user's password <password>
+    And I click Save User
+    Then I receive a edit user error message
 
-  Scenario: I am not able to enter an email address not of the form /@spartaglobal
+  Examples:
+  | first_name | last_name | email_address          | password  |
+  |            | Jobless   | steve@spartaglobal.com | Password1 |
+  | Steve      |           | steve@spartaglobal.com | Password1 |
+  | Steve      | Jobless   |                        | Password1 |
+  | Steve      | Jobless   | steve@spartaglobal.com |           |
+
+  @emailnotformcreateuser
+  Scenario: I am not able to enter an email address not of the form /@spartaglobal on the create page
     Given I am logged in
     And I am on the users page
     When I click onto Add New
@@ -77,39 +131,77 @@ Feature: I am able to create, read, edit or delete user information
     And I enter the user's password
     And I select the user's cohort
     And I select the user's role
-    Then I receive an error message
+    And I click Save User
+    Then I receive a create user error message
 
-  Scenario Outline: I am not able to create a user if the user's password is missing any criteria
+  @emailnotformedituser
+  Scenario: I am not able to enter an email address not of the form /@spartaglobal on the edit page
     Given I am logged in
     And I am on the users page
     When I click onto Add New
-    And I enter the user's <first_name2>
-    And I enter the user's <last_name2>
-    And I enter the user's <email_address2>
-    And I enter the user's <password2>
-    And I select the user's <cohort2>
-    And I select the user's <role2>
-    Then I receive an <error2> message
+    And the new user page loads
+    And I enter the user's first name
+    And I enter the user's last name
+    And I enter the user's email address
+    And I enter the user's password
+    And I select the user's cohort
+    And I select the user's role
+    And I click Save User
+    And I click on the user
+    And I click the edit button
+    And I change the user's first name
+    And I change the user's last name
+    And I enter a user's email address not of the form /@spartaglobal
+    And I change the user's password
+    And I select the user's cohort
+    And I select the user's role
+    And I click Save User
+    Then I receive a edit user error message
+    And so I delete the user
 
-  Examples:
-  | first_name2 | last_name2 | email_address2 | password2 | cohort2 | role2 | error2 |
-  | Steve | Jobless | steve@spartaglobal.com | Password | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
-  | Steve | Jobless | steve@spartaglobal.com | password1 | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
-  | Steve | Jobless | steve@spartaglobal.com | PASSWORD1 | Engineering-22 | Trainee | "All fields must be filled. Password must be at least 8 characters, including 1 uppercase, 1 lowercase, and 1 number. Must be a @spartglobal.com email address." |
-
-  Scenario Outline: I am not able to create a user if the user's cohort or role isn't on the system
+  @passwordmissingcreateuser
+  Scenario Outline: I am not able to create a user if the user's password is missing any criteria on the create page
     Given I am logged in
     And I am on the users page
     When I click onto Add New
-    And I enter the user's <first_name3>
-    And I enter the user's <last_name3>
-    And I enter the user's <email_address3>
-    And I enter the user's <password3>
-    And I select the user's <cohort3>
-    And I select the user's <role3>
-    Then I receive an <error3> message
+    And I enter the user's first name
+    And I enter the user's last name
+    And I enter the user's email address
+    And I enter the user's password <password_input>
+    And I click Save User
+    Then I receive a create user error message
 
   Examples:
-  | first_name3 | last_name3 | email_address3 | password3 | cohort3 | role3 | error3 |
-  | Steve | Jobless | steve@spartaglobal.com | Password1 | Woof | Trainee | ?? |
-  | Steve | Jobless | steve@spartaglobal.com | Password1 | Engineering-22 | Bark | ?? |
+  | password_input |
+  | Password |
+  | password1 |
+  | PASSWORD1 |
+
+  @passwordmissingedituser
+  Scenario Outline: I am not able to create a user if the user's password is missing any criteria on the edit page
+  Given I am logged in
+  And I am on the users page
+  When I click onto Add New
+  And the new user page loads
+  And I enter the user's first name
+  And I enter the user's last name
+  And I enter the user's email address
+  And I enter the user's password
+  And I select the user's cohort
+  And I select the user's role
+  And I click Save User
+  And I click on the user
+  And I click the edit button
+  And I enter the user's first name
+  And I enter the user's last name
+  And I enter the user's email address
+  And I enter the user's password <password_input>
+  And I click Save User
+  Then I receive a edit user error message
+  And so I delete the user
+
+  Examples:
+  | password_input |
+  | Password |
+  | password1 |
+  | PASSWORD1 |
