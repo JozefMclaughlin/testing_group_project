@@ -58,6 +58,14 @@ Feature: I am able to interact with the Specializations
     Then I should be on the Specialization page with the deleted Specialization removed
 
   @spec7
+  Scenario: I am not able to delete an existing Specialization
+    Given I am logged in
+    When I click the Specialization link
+    And I click the DevOps specialization
+    And I click the delete link
+    Then I should receive an error
+
+  @spec8
   Scenario: I am able to delete an existing Specialization
     Given I am logged in
     When I click the Specialization link

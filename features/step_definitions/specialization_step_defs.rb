@@ -81,6 +81,10 @@ When("I click the delete link") do
   specialization.click_delete
 end
 
+Then("I should receive an error") do
+  expect(specialization.error_message).to eq 'Cannot delete specialisation as it is currently in use.'
+end
+
 Then("I should be on the Specialization page with the deleted Specialization removed") do
   expect(current_url).to eq 'http://localhost:9292/specialisations'
   expect(specialization.length_of_table).to eq 3
