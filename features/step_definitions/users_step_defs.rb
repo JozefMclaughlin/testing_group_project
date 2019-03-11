@@ -28,11 +28,11 @@ When("I enter the user's password") do
 end
 
 When("I select the user's cohort") do
-  users.select_cohort rand(0..2)
+  users.select_cohort rand(0..1)
 end
 
 When("I select the user's role") do
-  users.select_role rand(0..3)
+  users.select_role rand(0..2)
 end
 
 When("I click Save User") do
