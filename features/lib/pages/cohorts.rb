@@ -72,6 +72,8 @@ class Cohorts
     find(:css, 'h1').text
   end
 
-
+  def confirm_delete
+    click_button('Yes')
+  end
 
 end

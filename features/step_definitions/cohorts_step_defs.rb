@@ -73,6 +73,7 @@ end
 
 When("I click Delete on that cohort's page") do
   cohorts.click_delete_cohort
+  cohorts.confirm_delete
 end
 
 Then("The cohort should be deleted") do

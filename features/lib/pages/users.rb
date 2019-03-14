@@ -101,4 +101,7 @@ class Users
   def click_any_user
     find_all_users[1].click_link
   end
+  def confirm_delete
+    click_button('Yes')
+  end
 end

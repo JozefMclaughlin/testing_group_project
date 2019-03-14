@@ -48,9 +48,12 @@ class Specialization
   def length_of_table
     all(:css, 'td').length
   end
-  
+
   def error_message
     find(:css, 'p').text
+  end
+  def confirm_delete
+    click_button('Yes')
   end
 
 end

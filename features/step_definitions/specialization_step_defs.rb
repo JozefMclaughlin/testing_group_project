@@ -79,6 +79,7 @@ end
 
 When("I click the delete link") do
   specialization.click_delete
+  specialization.confirm_delete
 end
 
 Then("I should receive an error") do

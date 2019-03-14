@@ -64,4 +64,7 @@ class Roles
   def check_delete
     all(:css, 'td').length
   end
+  def confirm_delete
+    click_button('Yes')
+  end
 end

@@ -91,6 +91,7 @@ end
 
 When("I click on Delete") do
   users.click_delete
+  users.confirm_delete
 end
 
 Then("the user's page should be deleted") do

@@ -68,6 +68,7 @@ end
 
 When("I click the Delete button") do
   roles.click_delete
+  roles.confirm_delete
 end
 
 Then("the role is no longer visible on the Roles page") do
