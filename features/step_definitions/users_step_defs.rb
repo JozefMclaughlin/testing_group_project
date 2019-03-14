@@ -1,5 +1,5 @@
 Given("I am on the users page") do
-  users.click_users
+  # users.click_users
   expect(users.find_h1_text).to eq "Users"
 end
 
@@ -46,16 +46,18 @@ Then("the new user is displayed on the users page") do
 end
 
 Then("so I delete the user") do
-  users.click_users
+  users.visit_users
   users.click_user users.new_full_name, users.new_email
   users.click_delete
+  users.confirm_delete
   expect(users.find_user_row(users.new_email)).to eq nil
 end
 
 Then("so I delete the edited user") do
-  users.click_users
+  users.visit_users
   users.click_user users.edit_full_name, users.edit_email
   users.click_delete
+  users.confirm_delete
   expect(users.find_user_row(users.new_email)).to eq nil
 end
 
@@ -84,7 +86,7 @@ When("I change the user's password") do
 end
 
 Then("the user's details should be updated") do
-  users.click_users
+   users.visit_users
   expect(users.find_user_row(users.edit_email).text).to include users.edit_full_name
   expect(users.find_user_row(users.edit_email).text).to include users.edit_email
 end

@@ -19,6 +19,9 @@ class Users
     @incorrect_email = "grayamnobells@hotmail.com"
   end
 
+  def visit_users
+    visit('http://localhost:9292/users')
+  end
   def click_users
     click_on(find('.nav-item')[0])
   end
@@ -28,7 +31,7 @@ class Users
   end
 
   def click_add_new
-    click_on('Add New')
+    click_button('Add New')
   end
 
   def fill_in_first_name first_name
