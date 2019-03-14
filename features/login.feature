@@ -37,10 +37,10 @@ Feature: I am able login
 
   Examples:
   | page3           | pageName        |
-  | Users           | users           |
-  | Cohorts         | cohorts         |
-  | Specialisations | specialisations |
-  | Roles           | roles           |
+  | users           | users           |
+  | cohorts         | cohorts         |
+  | specialisations | specialisations |
+  | roles           | roles           |
   @test5
   Scenario Outline: Users can use the navbar when logged in
   Given: I load the homepage

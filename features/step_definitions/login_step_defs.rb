@@ -46,8 +46,8 @@ Then("I am logged out") do
 end
 
 When(/^I try to access the (.*) page$/) do |link|
-  login.click_logout_button
-  click_nav_link link
+  
+  visit_page link
 end
 
 Then(/^I cannot get past the login page (.*)$/) do |pageName|
